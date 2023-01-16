@@ -12,6 +12,7 @@ using System.IO;
 
 namespace JobOffers.Controllers
 {
+    //[Authorize(Roles = "LookingForword")]
     public class JobsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

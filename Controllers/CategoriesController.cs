@@ -6,16 +6,17 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using JobOffers.Models;
-using JobOffers.Models;
+using JobOffers.Models; 
 
 namespace JobOffers.Controllers
 {
+    [Authorize(Roles ="Admins")]
     public class CategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Categories
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.Categories.ToList());

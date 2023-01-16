@@ -16,9 +16,15 @@ namespace JobOffers.Controllers
             return View(db.Categories.ToList());
         }
 
-        public ActionResult About()
+        public ActionResult Details(int JobId)
         {
-            ViewBag.Message = "Your application description page.";
+            var job = db.Jobs.Find(JobId);
+
+            if (job ==null )
+            {
+                return HttpNotFound();
+            }
+            return View(job);
 
             return View();
         }
