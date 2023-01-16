@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using JobOffers.Models;
-using Job_Offers_Website.Models;
+using JobOffers.Models;
 
 namespace JobOffers.Controllers
 {

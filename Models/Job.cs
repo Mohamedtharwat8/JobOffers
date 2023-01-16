@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc; 
 
-namespace Job_Offers_Website.Models
+namespace JobOffers.Models
 {
     public class Job
     {

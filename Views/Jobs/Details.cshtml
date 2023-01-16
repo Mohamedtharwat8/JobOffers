@@ -1,4 +1,4 @@
-﻿@model Job_Offers_Website.Models.Job
+﻿@model JobOffers.Models.Job
 
 @{
     ViewBag.Title = "Details";
@@ -48,7 +48,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.jobImage)
+            <img src="~/uploads/@Html.DisplayFor(model => model.jobImage)" style="width: 50px; height: 50px;" />
         </dd>
 
     </dl>

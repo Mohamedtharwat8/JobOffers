@@ -7,7 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using JobOffers.Models;
-using Job_Offers_Website.Models;
+using JobOffers.Models;
 using System.IO;
 
 namespace JobOffers.Controllers
@@ -90,10 +90,18 @@ namespace JobOffers.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,jobTitle,jobContent,jobImage,categoryId,UserId")] Job job)
+        public ActionResult Edit(Job job, HttpPostedFileBase upload)
         {
             if (ModelState.IsValid)
             {
+                string oldpath = Path.Combine(Server.MapPath("~/uploads"), job.jobImage);
+                if (upload != null)
+                {
+                    System.IO.File.Delete(oldpath);
+                    string path = Path.Combine(Server.MapPath("~/uploads"), upload.FileName);
+                    upload.SaveAs(path);
+                    job.jobImage = upload.FileName;
+                }
                 db.Entry(job).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

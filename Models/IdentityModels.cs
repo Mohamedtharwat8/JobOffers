@@ -2,7 +2,7 @@
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using Job_Offers_Website.Models;
+using JobOffers.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -34,9 +34,9 @@ namespace JobOffers.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Job_Offers_Website.Models.Category> Categories { get; set; }
+        public System.Data.Entity.DbSet<JobOffers.Models.Category> Categories { get; set; }
 
-        public System.Data.Entity.DbSet<Job_Offers_Website.Models.Job> Jobs { get; set; }
+        public System.Data.Entity.DbSet<JobOffers.Models.Job> Jobs { get; set; }
 
         //public System.Data.Entity.DbSet<JobOffers.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
