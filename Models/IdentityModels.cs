@@ -38,6 +38,7 @@ namespace JobOffers.Models
 
         public System.Data.Entity.DbSet<JobOffers.Models.Job> Jobs { get; set; }
 
-        //public System.Data.Entity.DbSet<JobOffers.Models.ApplicationUser> ApplicationUsers { get; set; }
+        public System.Data.Entity.DbSet<JobOffers.Models.ApplyForJob> ApplyForJobs { get; set; }
+
     }
 }

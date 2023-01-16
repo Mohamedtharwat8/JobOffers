@@ -1,25 +1,78 @@
 ﻿@using Microsoft.AspNet.Identity
+@using JobOffers.Models
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        var db = new ApplicationDbContext();
+        var UserId = User.Identity.GetUserId();
+        var CurrentUser = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+        @Html.AntiForgeryToken()
+        <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <span class="glyphicon glyphicon-user"></span>
+                    <strong>Welcome @CurrentUser.UserName</strong>
+                    <span class="glyphicon glyphicon-chevron-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="navbar-user">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <p class="text-center">
+                                        <span class="glyphicon glyphicon-user img-size"></span>
+                                    </p>
+                                </div>
+                                <div class="col-lg-8">
+                                    <p class="text-right">
+                                        <strong>
+                                            @CurrentUser.UserName
+                                        </strong>
+                                    </p>
+                                    @if (CurrentUser.UserType == "LookingForword")
+                                    {
+                                        <a href="~/Jobs/Create" class="btn btn-success">Create Job</a>
+                                        <a href="~/Home/GetJobsByPublisher" class="btn btn-success btn-block">Your Appled Jobs</a>
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage",
-           routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-    </ul>
+                                    }
+                                    else
+                                    {
+                                        <a href="~/Home/GetJobsByUser" class="btn btn-success btn-block">Your Appled user Jobs</a>
+                                    }
+                                    <a href="~/Account/EditProfile" class="btn btn-primary btn-block">Edit Profile</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <p><a href="javascript:document.getElementById('logoff').submit()" class="btn btn-danger btn-block">LogOff</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null,
-           htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Log in", "Login", "Account",
-           routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
+        <li>
+            @Html.ActionLink("Register", "Register", "Account", routeValues: null,
+       htmlAttributes: new { id = "registerLink" })
+    </li>
+    <li>
+        @Html.ActionLink("Log in", "Login", "Account",
+   routeValues: null, htmlAttributes: new { id = "loginLink" })
+</li>
+</ul>
 }

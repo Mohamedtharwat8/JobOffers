@@ -193,11 +193,26 @@
     <Compile Include="Migrations\202301161002094_addjobs.designer.cs">
       <DependentUpon>202301161002094_addjobs.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301161633428_adapplyjobs.cs" />
+    <Compile Include="Migrations\202301161633428_adapplyjobs.designer.cs">
+      <DependentUpon>202301161633428_adapplyjobs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301161730312_adapplyjobsApplications.cs" />
+    <Compile Include="Migrations\202301161730312_adapplyjobsApplications.designer.cs">
+      <DependentUpon>202301161730312_adapplyjobsApplications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301161944383_addpublisher.cs" />
+    <Compile Include="Migrations\202301161944383_addpublisher.designer.cs">
+      <DependentUpon>202301161944383_addpublisher.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplyForJob.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Job.cs" />
+    <Compile Include="Models\JobsViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -312,6 +327,14 @@
     <Content Include="Views\Jobs\Index.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\Apply.cshtml" />
+    <Content Include="Views\Home\GetJobsByUser.cshtml" />
+    <Content Include="Views\Home\DetailsOfJob.cshtml" />
+    <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Home\Delete.cshtml" />
+    <Content Include="Views\Home\GetJobsByPublisher.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Account\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -342,6 +365,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301161002094_addjobs.resx">
       <DependentUpon>202301161002094_addjobs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301161633428_adapplyjobs.resx">
+      <DependentUpon>202301161633428_adapplyjobs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301161730312_adapplyjobsApplications.resx">
+      <DependentUpon>202301161730312_adapplyjobsApplications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301161944383_addpublisher.resx">
+      <DependentUpon>202301161944383_addpublisher.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

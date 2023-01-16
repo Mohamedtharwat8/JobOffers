@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using JobOffers.Models;
 using JobOffers.Models;
 using System.IO;
+using Microsoft.AspNet.Identity;
 
 namespace JobOffers.Controllers
 {
@@ -59,6 +60,7 @@ namespace JobOffers.Controllers
                 string path = Path.Combine(Server.MapPath("~/uploads"), upload.FileName);
                 upload.SaveAs(path);
                 job.jobImage = upload.FileName;
+                job.UserId = User.Identity.GetUserId();
                 db.Jobs.Add(job);
                 db.SaveChanges();
                 return RedirectToAction("Index");

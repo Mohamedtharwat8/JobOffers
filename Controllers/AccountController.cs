@@ -17,10 +17,13 @@ namespace JobOffers.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db;
 
         public AccountController()
         {
+            db = new ApplicationDbContext();
         }
+
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
@@ -184,6 +187,41 @@ namespace JobOffers.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+
+        public ActionResult EditProfile()
+        {
+            var UserId = User.Identity.GetUserId();
+            var user = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+            EditProfileViewModel profile = new EditProfileViewModel();
+            profile.UserName = user.UserName;
+            profile.Email = user.Email;
+
+            return View(profile);
+        }
+        [HttpPost]
+        public ActionResult EditProfile(EditProfileViewModel profile)
+        {
+            var UserId = User.Identity.GetUserId();
+            var CurrentUser = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+            if (!UserManager.CheckPassword(CurrentUser, profile.CurrentPassword))
+            {
+                ViewBag.Message = "Current Password is not Correct";
+            }
+            else
+            {
+                var newPasswordHash = UserManager.PasswordHasher.HashPassword((profile.NewPassword));
+                CurrentUser.UserName = profile.UserName;
+                CurrentUser.Email = profile.Email;
+                CurrentUser.PasswordHash = newPasswordHash;
+                db.Entry(CurrentUser).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+                ViewBag.Message = "Profile Edit Successfully !";
+            }
+            return View();
+        }
+
+
 
         //
         // GET: /Account/ConfirmEmail
