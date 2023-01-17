@@ -142,13 +142,13 @@ namespace JobOffers.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.UserType = new SelectList(new[]
-            {
+            //ViewBag.UserType = new SelectList(new[]
+            //{
 
-                "Hiring", "LookingForword"
-            }
+            //    "Hiring", "LookingForword"
+            //}
                 );
-            //ViewBag.UserType = new SelectList(db.Roles.Where(a => !a.Name.Contains("Admin")).ToList(), "Name", "Name");
+            ViewBag.UserType = new SelectList(db.Roles.Where(a => !a.Name.Contains("Admins")).ToList(), "Name", "Name");
             return View();
         }
 
